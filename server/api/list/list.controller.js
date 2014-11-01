@@ -23,7 +23,15 @@ exports.show = function(req, res) {
 // Creates a new list in the DB.
 exports.create = function(req, res) {
   List.create(req.body, function(err, list) {
-    if(err) { return handleError(res, err); }
+    if(err) {
+      console.log(err);
+      return handleError(res, err);
+    }
+    // add list to user object
+    req.user.lists.addToSet(list._id)
+    req.user.save(function(err, user){
+      console.log('user after save: ', user);
+    })
     return res.json(201, list);
   });
 };

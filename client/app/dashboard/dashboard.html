@@ -1,9 +1,22 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="col-md-12 createListForm">
-  <h3>Add a List</h3>
-  <form name="listForm" ng-submit="" novalidate>
-    <input class="listNameInput" placeholder="List Name" ng-model="Dashboard.newList" required>
-    <input class="createNewList" type="submit" value="Create New List" ng-click="Dashboard.addList()">
-  </form>
+<div class="container">
+  <div class="col-md-12">
+    <div class="row">
+      <h3 class="listHeader">Your Lists</h3>
+      <div class="listNames">
+        <ul ng-repeat="list in currentUser.lists">
+          <li>{{list.name}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 createListForm">
+    <h3>Add a List</h3>
+    <form name="listForm" ng-submit="" novalidate>
+      <input class="listNameInput" placeholder="List Name" ng-model="Dashboard.newList" required>
+      <input class="createNewList" type="submit" value="Create New List" ng-click="Dashboard.addList()">
+    </form>
+  </div>
 </div>
+

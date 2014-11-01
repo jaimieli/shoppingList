@@ -5,6 +5,8 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['google'];
 
+var list
+
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
@@ -15,7 +17,8 @@ var UserSchema = new Schema({
   hashedPassword: String,
   provider: String,
   salt: String,
-  google: {}
+  google: {},
+  lists: [ {type: Schema.Types.ObjectId, ref:'List'}]
 });
 
 /**
