@@ -6,11 +6,8 @@ angular.module('shoppingListApp')
     $scope.currentUser = Auth.getCurrentUser();
 
     // on page load, get all the lists
-    $scope.lists = [];
-
     $http.get('/api/users/me').success(function(data){
       $scope.currentUser = data;
-      socket.syncUpdates('user', $scope.currentUser)
     })
 
     // add list
@@ -23,7 +20,9 @@ angular.module('shoppingListApp')
         users: [$scope.currentUser._id]
       }
       $http.post('/api/lists', listObj).success(function(data){
-        console.log('data after creating list: ', data)
+        console.log('created list: ', data.list)
+        console.log('user after creating list: ', data.user);
+        $scope.currentUser = data.user;
       })
       this.newList = '';
     }
