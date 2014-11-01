@@ -1,0 +1,30 @@
+.createListForm {
+  display: inline-block;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.listNameInput {
+  border: 1px solid #b8b8b8;
+  width: 300px;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 7px;
+}
+
+.createNewList {
+  margin-top: 15px;
+  margin-bottom: 60px;
+  height: 42px;
+  padding: 5px 10px;
+  border: 1px solid #3881C2;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #3881C2;
+  font-family: Lato;
+  font-weight: 300;
+}

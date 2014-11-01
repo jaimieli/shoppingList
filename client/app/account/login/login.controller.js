@@ -13,9 +13,10 @@ angular.module('shoppingListApp')
           email: $scope.user.email,
           password: $scope.user.password
         })
+        // promise after authenticated
         .then( function() {
-          // Logged in, redirect to home
-          $location.path('/');
+          // Logged in, redirect to dashboard
+          $location.path('/dashboard');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

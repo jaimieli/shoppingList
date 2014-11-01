@@ -6,7 +6,7 @@ angular.module('shoppingListApp')
       'title': 'Home',
       'link': '/'
     },{
-      'title': 'Dashboard',
+      'title': 'Lists',
       'link': '/dashboard'
     }];
 

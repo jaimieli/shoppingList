@@ -5,8 +5,12 @@ var mongoose = require('mongoose'),
 
 var ItemSchema = new Schema({
   name: String,
-  info: String,
-  active: Boolean
+  active: Boolean,
+  purchased: { type: Boolean, default: false },
+  requestedBy: { type: Schema.Types.ObjectId, ref:'User'},
+  assignedTo: { type: Schema.Types.ObjectId, ref:'User'},
+  tags: [ String ],
+  notes: String
 });
 
 module.exports = mongoose.model('Item', ItemSchema);
