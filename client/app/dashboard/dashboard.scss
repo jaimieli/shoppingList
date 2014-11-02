@@ -3,7 +3,7 @@
   font-family: Lato;
   font-weight: 300;
   margin-bottom: 15px;
-  text-align: center;
+  text-align: left;
   margin-top: 60px;
 }
 
@@ -11,20 +11,56 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+}
+
+.itemLi {
   text-align: center;
+  display: inline-block;
+}
+
+.listItem {
+  border: 1px solid #b8b8b8;
+  padding: 10px;
+  border-radius: 3px;
+  font-family: Lato;
+  font-size: 16px;
+  display: inline-block;
+  margin: 7px;
+}
+
+.listItem a {
+  text-decoration: none;
+}
+
+.delete {
+  height: 25px;
+  width: 25px;
+  margin-left: 110px;
+  margin-bottom: -26px;
 }
 
 // create list
 .createListForm {
-  display: inline-block;
-  text-align: center;
+  text-align: left;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
 .listNameInput {
   border: 1px solid #b8b8b8;
-  width: 300px;
+  width: 33%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 7px;
+}
+
+.listDescriptionInput {
+  border: 1px solid #b8b8b8;
+  width: 33%;
   padding: 10px;
   border-radius: 3px;
   color: #545454 !important;
@@ -34,9 +70,11 @@
 }
 
 .createNewList {
-  margin-top: 15px;
-  margin-bottom: 60px;
+  // margin-top: 15px;
+  // margin-bottom: 60px;
+  margin: 7px;
   height: 42px;
+  width: 20%;
   padding: 5px 10px;
   border: 1px solid #3881C2;
   border-radius: 3px;
@@ -44,4 +82,5 @@
   background-color: #3881C2;
   font-family: Lato;
   font-weight: 300;
+  font-size: 16px
 }

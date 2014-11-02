@@ -5,11 +5,13 @@ var mongoose = require('mongoose'),
 
 var ListSchema = new Schema({
   name: String,
-  description: String,
+  description: {type: String, default: ''},
   active: Boolean,
   users: [ { type: Schema.Types.ObjectId, ref:'User'} ],
   items: [ { type: Schema.Types.ObjectId, ref:'Item'} ],
-  total: { type: Number, default: null}
+  total: { type: Number, default: null},
+  createdAt: { type: Date },
+  modifiedAt: { type: Date }
 });
 
 module.exports = mongoose.model('List', ListSchema);

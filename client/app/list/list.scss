@@ -1,0 +1,32 @@
+
+.itemInput{
+  border: 1px solid #b8b8b8;
+  // width: 300px;
+  width: 25%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0px 3px;
+}
+
+.createNewItem {
+  border: 1px solid #b8b8b8;
+  // width: 300px;
+  width: 15%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #3881C2;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0px 3px;
+}
+
+.addItemForm {
+  display: inline-block;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

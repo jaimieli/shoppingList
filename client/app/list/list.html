@@ -1,3 +1,31 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
 <div class="col-md-12">
-This is the list view.
+  <div class="container">
+    This is the list view.
+    <h3>Name: {{listData.name}}</h3>
+    <p ng-if="listData.description !== ''">Description: {{listData.description}}</p>
+    <div class="col-md-12 addItemForm">
+      <form name="itemForm" ng-submit="List.addItem(List.newItem)">
+        <div class="row">
+          <input class="itemInput col-md-3" ng-model="List.newItem.name" placeholder="Item Name" name="itemName" required/>
+          <input class="itemInput col-md-3" name="formName" placeholder="Tags separated by a slash /" ng-model="List.newItem.tags" required/>
+          <input class="itemInput col-md-3" ng-model="List.newItem.notes" placeholder="Notes" name="itemNotes"/>
+          <input class="createNewItem" type="submit" value="Add Item">
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12">
+      Shopping List
+      <ul ng-repeat="item in listData.items">
+        <li> Name: {{item.name}}
+          Tags:
+          <ul ng-repeat="tag in item.tags">
+            <li>{{tag}}</li>
+          </ul>
+          Notes: {{item.notes}}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

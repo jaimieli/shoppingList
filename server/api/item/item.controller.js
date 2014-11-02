@@ -1,7 +1,10 @@
 'use strict';
 
 var _ = require('lodash');
+var async = require('async');
+var request = require('request');
 var Item = require('./item.model');
+var List = require('../list/list.model')
 
 // Get list of items
 exports.index = function(req, res) {
@@ -22,10 +25,53 @@ exports.show = function(req, res) {
 
 // Creates a new item in the DB.
 exports.create = function(req, res) {
-  Item.create(req.body, function(err, item) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, item);
-  });
+  var item = req.body;
+  var results = {};
+
+  var getPriceData = function(done){
+    request('http://item­-price.herokuapp.com/get_price?item=' + item.name, function(err, response, body){
+      if (err) {
+        console.log(err);
+      }
+      console.log('body: ', body);
+      done(null, 'done getting price data')
+    })
+  }
+
+  var createItem = function(done) {
+    Item.create(item, function(err, item) {
+      if(err) {
+        console.log(err);
+        return handleError(res, err)
+      }
+      // add item to list doc
+      List.findById({_id: item.listId}, function(err, list){
+        if (err) {
+          console.log(err);
+          return handleError(res, err)
+        }
+        list.items.addToSet(item._id.toString());
+        list.save(function(err, list){
+          if (err) {
+            console.log(err);
+            return handleError(res, err)
+          }
+          list.populate('items', function(err, list){
+            results.list = list;
+            done(null, "done creating item");
+          })
+        })
+      })
+    });
+  }
+
+  var doneTasks = function(err){
+    if(err)console.log(err);
+    return res.json(201, results)
+  }
+
+  async.series([getPriceData, createItem], doneTasks)
+
 };
 
 // Updates an existing item in the DB.

@@ -5,17 +5,18 @@
     <div class="row">
       <h3 class="listHeader">Your Shopping Lists</h3>
       <div class="listNames">
-        <ul ng-repeat="list in currentUser.lists">
-          <li>{{list.name}}</li>
+        <ul class="col-md-4 col-lg-4 col-sm-6"ng-repeat="list in currentUser.lists">
+          <li class="itemLi" tooltip="{{list.description}}"><a ng-href='/list/{{list._id}}' class="listItem">{{list.name}}</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="col-md-12 createListForm">
-    <h3>Add a List</h3>
+    <h3 class="listHeader">Add a List</h3>
     <form name="listForm" ng-submit="" novalidate>
-      <input class="listNameInput" placeholder="List Name" ng-model="Dashboard.newList" required>
-      <input class="createNewList" type="submit" value="Create New List" ng-click="Dashboard.addList()">
+      <input class="listNameInput col-md-4" placeholder="List Name" ng-model="Dashboard.newList.name" required>
+      <input class="listDescriptionInput col-md-4" placeholder="Description" ng-model="Dashboard.newList.description">
+      <input class="createNewList col-md-4" type="submit" value="Create New List" ng-click="Dashboard.addList()">
     </form>
   </div>
 </div>

@@ -13,11 +13,13 @@ exports.index = function(req, res) {
 
 // Get a single list
 exports.show = function(req, res) {
-  List.findById(req.params.id, function (err, list) {
-    if(err) { return handleError(res, err); }
-    if(!list) { return res.send(404); }
-    return res.json(list);
-  });
+  List.findOne({_id: req.params.id})
+    .populate('users')
+    .populate('items')
+    .exec(function(err, results) {
+      console.log(results);
+      res.send(results)
+  })
 };
 
 // Creates a new list in the DB.
@@ -28,7 +30,7 @@ exports.create = function(req, res) {
       console.log(err);
       return handleError(res, err);
     }
-    // add list to user object
+    // add list to user doc
     obj.list = list;
     req.user.lists.addToSet(list._id)
     req.user.save(function(err, user){

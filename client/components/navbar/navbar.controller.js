@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('shoppingListApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $http, $location, Auth, $stateParams, listData) {
+    console.log('$stateParams: ', $stateParams)
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
     },{
-      'title': 'Lists',
+      'title': 'My Lists',
       'link': '/dashboard'
     }];
 
@@ -14,6 +15,18 @@ angular.module('shoppingListApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    if($stateParams.id) {
+      console.log('in list');
+      $scope.inList = true;
+    } else {
+      $scope.inList = false;
+    }
+
+    $scope.listId = $stateParams.id;
+
+    // get list data on load
+    $scope.listName = listData.getListData().name;
 
     $scope.logout = function() {
       Auth.logout();
