@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var List = require('./list.model');
+var Item = require('../item/item.model')
 
 // Get list of lists
 exports.index = function(req, res) {
@@ -63,7 +64,22 @@ exports.update = function(req, res) {
 
 // Deletes a list from the DB.
 exports.destroy = function(req, res) {
-  // should also set all the items with this listId to active: false
+  // Remove items with this listId
+  Item.find({listId: req.params.id}, function(err, items){
+    var itemsLen = items.length;
+    for (var i = 0; i < itemsLen; i++){
+      items[i].remove(function(err){
+        if (err){
+          console.log(err);
+          return handleError(res, err)
+        } else {
+          console.log('removed item successfully!')
+        }
+      })
+    }
+  })
+  // Remove list document with this _id
+  // and remove this list from user's list array
   List.findById(req.params.id, function (err, list) {
     if(err) { return handleError(res, err); }
     if(!list) { return res.send(404); }
@@ -82,6 +98,7 @@ exports.destroy = function(req, res) {
         return handleError(res, err)
       }
     })
+    // remove list document
     list.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);

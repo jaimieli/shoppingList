@@ -2,13 +2,8 @@
 
 <div class="col-md-12">
   <div class="container" ng-show="listData">
-    <ul>
-      <li>Show everyone in the list</li>
-      <li>Add/Delete users from the list</li>
-      <li>Archive List</li>
-    </ul>
     <div class="headerSection">
-        <h3 class="listHeader headerInline">{{listData.name}} (<p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>)</h3>
+        <h3 class="listHeader headerInline">{{listData.name}} Settings</h3>
         <button class="btn btn-danger deleteList" ng-click="ListSettings.deleteList()">Delete List</button>
     </div>
     <h3 class="listHeader">Users</h3>
