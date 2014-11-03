@@ -10,16 +10,17 @@
   font-family: Lato;
   font-weight: 500;
   margin-bottom: 15px;
+  font-size: 14px;
   text-align: left;
 }
 
 .itemName{
   border: 1px solid #b8b8b8;
-  width: 25%;
+  width: 24%;
   padding: 10px;
   border-radius: 3px;
   color: #545454 !important;
-  font-family: Lato;
+  font-family: Lato !important;
   font-size: 16px;
   margin: 0px 3px;
 }
@@ -48,6 +49,49 @@
   margin: 0px 3px;
 }
 
+.filterItem{
+  border: 1px solid #b8b8b8;
+  width: 24%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato !important;
+  font-size: 16px;
+  margin: 0px 3px;
+  display: inline-block;
+}
+
+.filterTags{
+  border: 1px solid #b8b8b8;
+  width: 41%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato !important;
+  font-size: 16px;
+  margin: 0px 3px;
+  display: inline-block;
+}
+
+.filterByPurchased {
+  border: 1px solid #b8b8b8;
+  width: 32%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0px 3px;
+}
+
+label {
+  display: block;
+}
+
+
+
+
+
 .addItemForm {
   display: inline-block;
   text-align: left;
@@ -72,6 +116,7 @@
 .tableItem {
   text-align: left;
   line-height: 22px;
+  font-size: 16px;
   font-family: Lato;
   font-weight: 300;
 }

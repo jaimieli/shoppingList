@@ -10,6 +10,8 @@ angular.module('shoppingListApp')
         var self = this;
         return $http.get('/api/lists/' + id).success(function(data){
           listData = data;
+          dollarsSpent = 0;
+          remainingCosts = 0;
           var len = listData.items.length;
           for (var i = 0; i < len; i++){
             if(listData.items[i].purchased){
@@ -18,18 +20,16 @@ angular.module('shoppingListApp')
               remainingCosts += listData.items[i].price
             }
           }
-          console.log('dollarsSpent: ', dollarsSpent)
-          console.log('remainingCosts: ', remainingCosts)
         });
       },
       getListData: function(){
         return listData;
       },
       getRemainingCosts: function(){
-        return remainingCosts;
+        return remainingCosts.toFixed(2);
       },
       getDollarsSpent: function(){
-        return dollarsSpent;
+        return dollarsSpent.toFixed(2);
       }
     };
   });

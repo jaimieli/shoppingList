@@ -2,7 +2,6 @@
 
 angular.module('shoppingListApp')
   .controller('NavbarCtrl', function ($scope, $http, $location, Auth, $stateParams, listData) {
-    console.log('$stateParams: ', $stateParams)
     $scope.menu = [{
       'title': 'Home',
       'link': '/'

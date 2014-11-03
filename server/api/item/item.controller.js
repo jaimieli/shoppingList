@@ -45,7 +45,7 @@ exports.create = function(req, res) {
         console.log(err);
         return handleError(res, err)
       }
-      item.price = body.price;
+      item.price = body.price.toFixed(2);
       done(null, 'done getting price data')
     })
   }
