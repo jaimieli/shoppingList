@@ -4,16 +4,23 @@ angular.module('shoppingListApp')
   .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http) {
     $scope.message = 'Hello';
     var listId = $stateParams.id;
+    this.remainingCosts = 0;
+    this.dollarsSpent = 0;
     var updateListData = function(){
       listData.setListData(listId).then(function(){
         $scope.listData = listData.getListData()
         console.log('$scope.listData after update: ', $scope.listData)
+        this.remainingCosts = listData.getRemainingCosts();
+        console.log('this')
+        this.dollarsSpent = listData.getDollarsSpent();
       })
     };
     updateListData();
     this.newItem = {};
     this.addItem = function(item){
-      item.tags = item.tags.split('/');
+      if(item.tags){
+        item.tags = item.tags.split('/');
+      }
       item.listId = listId;
       item.requestedBy = Auth.getCurrentUser()._id;
       $http.post('/api/items', item).success(function(data){

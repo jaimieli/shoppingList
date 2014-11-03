@@ -63,7 +63,7 @@ exports.create = function(req, res) {
           return handleError(res, err)
         }
         list.items.addToSet(item._id.toString());
-        list.total = list.total + item.price;
+        list.total = (list.total + item.price).toFixed(2);
         list.save(function(err, list){
           if (err) {
             console.log(err);
@@ -115,13 +115,12 @@ exports.destroy = function(req, res) {
       var len = list.items.length;
       for (var i = 0; i < len; i++){
         if(list.items[i].toString() === item._id.toString()){
-          console.log('found item')
           list.items.splice(i, 1);
+          break;
         }
       }
       // update list total
-      list.total = list.total - item.price;
-      console.log('new tota: ', list.total)
+      list.total = (list.total - item.price).toFixed(2);
       list.save(function(err, list){
         if (err) {
           console.log(err);

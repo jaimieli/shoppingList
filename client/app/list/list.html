@@ -9,7 +9,7 @@
       <form name="itemForm" ng-submit="List.addItem(List.newItem)">
         <div class="row">
           <input class="itemName col-md-3" ng-model="List.newItem.name" placeholder="Item Name" name="itemName" required/>
-          <input class="itemTags col-md-7" name="formName" placeholder="Tags separated by a slash /" ng-model="List.newItem.tags" required/>
+          <input class="itemTags col-md-7" name="formName" placeholder="Tags separated by a slash /" ng-model="List.newItem.tags"/>
 <!--           <input class="itemInput col-md-3" ng-model="List.newItem.notes" placeholder="Notes" name="itemNotes"/> -->
           <input class="createNewItem" type="submit" value="Add Item">
         </div>
@@ -59,7 +59,10 @@
           </div>
         </div> <!-- row -->
       </div class=> <!-- item ng-repeat -->
-      <div class="total">Total Cost: ${{listData.total}}
+      <div class="total">
+        <p class="totalItem">Dollars Spent: ${{listData.dollarsSpent}} </p>
+        <p class="totalItem">Remaining Costs: ${{listData.remainingCosts}}</p>
+        <p class="totalItem">Total Cost: ${{listData.total}}</p>
       </div>
     </div>
   </div>
