@@ -2,30 +2,64 @@
 
 <div class="col-md-12">
   <div class="container">
-    This is the list view.
-    <h3>Name: {{listData.name}}</h3>
-    <p ng-if="listData.description !== ''">Description: {{listData.description}}</p>
+    <h3 class="listHeader">{{listData.name}}</h3>
+    <p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>
+    <h3 class="listHeader">Add Items to Your List</h3>
     <div class="col-md-12 addItemForm">
       <form name="itemForm" ng-submit="List.addItem(List.newItem)">
         <div class="row">
-          <input class="itemInput col-md-3" ng-model="List.newItem.name" placeholder="Item Name" name="itemName" required/>
-          <input class="itemInput col-md-3" name="formName" placeholder="Tags separated by a slash /" ng-model="List.newItem.tags" required/>
-          <input class="itemInput col-md-3" ng-model="List.newItem.notes" placeholder="Notes" name="itemNotes"/>
+          <input class="itemName col-md-3" ng-model="List.newItem.name" placeholder="Item Name" name="itemName" required/>
+          <input class="itemTags col-md-7" name="formName" placeholder="Tags separated by a slash /" ng-model="List.newItem.tags" required/>
+<!--           <input class="itemInput col-md-3" ng-model="List.newItem.notes" placeholder="Notes" name="itemNotes"/> -->
           <input class="createNewItem" type="submit" value="Add Item">
         </div>
       </form>
     </div>
-    <div class="col-md-12">
-      Shopping List
-      <ul ng-repeat="item in listData.items">
-        <li> Name: {{item.name}}
-          Tags:
-          <ul ng-repeat="tag in item.tags">
-            <li>{{tag}}</li>
-          </ul>
-          Notes: {{item.notes}}
-        </li>
-      </ul>
+    <h3 class="listHeader">Shopping List</h3>
+    <div class="col-md-12 shoppingList">
+      <p class="searchHeader">Search</p>
+    </div>
+    <div class="col-md-12 shoppingList">
+      <div class="row">
+        <div class="col-md-3 tableHeader">
+          Item Name
+        </div>
+        <div class="col-md-3 tableHeader">
+          Tags
+        </div>
+        <div class="col-md-2 tableHeader">
+          Price
+        </div>
+        <div class="col-md-2 tableHeader">
+          Purchased?
+        </div>
+        <div class="col-md-2 tableHeader">
+          Delete
+        </div>
+      </div>
+      <div ng-repeat="item in listData.items track by $index | orderBy: 'purchased' ">
+        <div class="row">
+          <div class="col-md-3 tableColumn">
+            <p class="tableItem">{{item.name}}</p>
+          </div>
+          <div class="col-md-3 tableColumn">
+            <ul class="tableColumn" ng-repeat="tag in item.tags track by $index">
+              <li class="tableItem">{{tag}}</li>
+            </ul>
+          </div>
+          <div class="col-md-2 tableColumn">
+            <p class="tableItem">${{item.price}}</p>
+          </div>
+          <div class="col-md-2 tableColumn">
+            <p class="tableItem">Purchased<input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
+          </div>
+          <div class="col-md-2 tableColumn">
+            <button class="btn deleteButton" ng-click="List.deleteItem(item)">Delete
+            </button>
+          </div>
+        </div> <!-- row -->
+      </div> <!-- item ng-repeat -->
+      Total: ${{listData.total}}
     </div>
   </div>
 </div>

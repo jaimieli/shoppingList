@@ -1,8 +1,32 @@
+.listHeader {
+  font-family: Lato;
+  font-weight: 300;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
-.itemInput{
+.listDescription {
+  font-family: Lato;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.itemName{
   border: 1px solid #b8b8b8;
-  // width: 300px;
   width: 25%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0px 3px;
+}
+
+.itemTags{
+  border: 1px solid #b8b8b8;
+  width: 58%;
   padding: 10px;
   border-radius: 3px;
   color: #545454 !important;
@@ -28,5 +52,41 @@
   display: inline-block;
   text-align: left;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
+}
+.shoppingList{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.searchHeader {
+  text-align: left;
+  font-family: Lato;
+  font-size: 20px;
+}
+.tableHeader {
+  text-align: left;
+  font-family: Lato;
+  font-size: 20px
+}
+
+.tableItem {
+  text-align: left;
+  line-height: 22px;
+  font-family: Lato;
+  font-weight: 300;
+}
+
+.tableColumn {
+  text-align: left;
+  .ul {
+    padding-left:0px;
+  }
+}
+.deleteButton {
+  background-color: #D2403D !important;
+  color: #fff !important;
+  height: 28px;
+  line-height: 10px;
+  font-family: Lato;
+  font-weight: 300;
 }

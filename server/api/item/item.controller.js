@@ -29,11 +29,23 @@ exports.create = function(req, res) {
   var results = {};
 
   var getPriceData = function(done){
-    request('http://item­-price.herokuapp.com/get_price?item=' + item.name, function(err, response, body){
+    var options = {
+     uri: 'http://item­-price.herokuapp.com/get_price',
+     qs: {
+       item: item.name
+     },
+     method: 'GET',
+     headers: {
+       "Host":"item-price.herokuapp.com",
+     },
+     json: true
+    };
+    request(options, function(err, response, body){
       if (err) {
         console.log(err);
+        return handleError(res, err)
       }
-      console.log('body: ', body);
+      item.price = body.price;
       done(null, 'done getting price data')
     })
   }
@@ -51,6 +63,7 @@ exports.create = function(req, res) {
           return handleError(res, err)
         }
         list.items.addToSet(item._id.toString());
+        list.total = list.total + item.price;
         list.save(function(err, list){
           if (err) {
             console.log(err);

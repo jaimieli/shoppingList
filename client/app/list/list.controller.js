@@ -4,10 +4,13 @@ angular.module('shoppingListApp')
   .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http) {
     $scope.message = 'Hello';
     var listId = $stateParams.id;
-    listData.setListData(listId).then(function(){
-      $scope.listData = listData.getListData()
-      console.log('$scope.listData in list: ', $scope.listData)
-    })
+    var updateListData = function(){
+      listData.setListData(listId).then(function(){
+        $scope.listData = listData.getListData()
+        console.log('$scope.listData after update: ', $scope.listData)
+      })
+    };
+    updateListData();
     this.newItem = {};
     this.addItem = function(item){
       item.tags = item.tags.split('/');
@@ -18,5 +21,16 @@ angular.module('shoppingListApp')
         console.log('$scope.listData after adding item: ', $scope.listData)
       })
       this.newItem = {};
+    }
+    this.deleteItem = function(item){
+      $http.delete('/api/items/' + item._id).success(function(d){
+        updateListData();
+      })
+    }
+    this.updateStatus = function(item){
+      console.log('update purchase status of: ', item)
+      $http.put('/api/items/' + item._id, item).success(function(){
+        updateListData();
+      })
     }
   });
