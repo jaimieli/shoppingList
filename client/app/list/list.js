@@ -11,8 +11,8 @@ angular.module('shoppingListApp')
       })
       .state('listSettings', {
         url: '/list/:id/settings',
-        templateUrl: 'app/list/settings.html',
-        controller: 'SettingsCtrl',
-        controllerAs: 'Settings'
+        templateUrl: 'app/list/listSettings.html',
+        controller: 'listSettingsCtrl',
+        controllerAs: 'listSettings'
       });
 });

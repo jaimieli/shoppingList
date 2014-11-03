@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shoppingListApp')
-  .controller('SettingsCtrl', function ($scope, listData, $rootScope, $stateParams) {
+  .controller('listSettingsCtrl', function ($scope, listData, $rootScope, $stateParams) {
     var listId = $stateParams.id;
     var updateListData = function(){
       listData.setListData(listId).then(function(){
