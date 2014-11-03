@@ -47,30 +47,7 @@
             Delete
           </div>
         </div><!-- row -->
-        <div ng-repeat="item in listData.items | filter:{purchased:true}| filter:searchFilter | filter:tagFilter ">
-          <div class="row">
-            <div class="col-md-3 tableColumn">
-              <p class="tableItem">{{item.name}}</p>
-            </div>
-            <div class="col-md-3 tableColumn">
-              <div class="tableColumn" ng-repeat="tag in item.tags track by $index">
-                <p class="tableItem">{{tag}}</p>
-              </div>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <p class="tableItem">${{item.price}}</p>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <p class="tableItem"><input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <button class="btn deleteButton" ng-click="List.deleteItem(item)">Delete
-              </button>
-            </div>
-          </div> <!-- row -->
-        </div class=> <!-- item ng-repeat -->
-        <hr>
-        <div ng-repeat="item in listData.items | filter:{purchased:false}| filter:searchFilter | filter:tagFilter ">
+        <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:tagFilter ">
           <div class="row">
             <div class="col-md-3 tableColumn">
               <p class="tableItem">{{item.name}}</p>
