@@ -12,7 +12,7 @@ angular.module('shoppingListApp')
           listData = data;
           dollarsSpent = 0;
           remainingCosts = 0;
-          if (listData.items.length){
+          if (listData && listData.items.length){
             var len = listData.items.length;
             for (var i = 0; i < len; i++){
               if(listData.items[i].purchased){

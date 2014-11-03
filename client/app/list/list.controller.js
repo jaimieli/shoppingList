@@ -6,6 +6,9 @@ angular.module('shoppingListApp')
     this.remainingCosts = 0;
     this.dollarsSpent = 0;
     var listController = this;
+    if ($scope.listData === undefined){
+      console.log('list has been deleted')
+    }
     var updateListData = function(){
       listData.setListData(listId).then(function(){
         $scope.listData = listData.getListData()
@@ -22,9 +25,9 @@ angular.module('shoppingListApp')
       }
       item.listId = listId;
       item.requestedBy = Auth.getCurrentUser()._id;
-      $http.post('/api/items', item).success(function(data){
-        $scope.listData = data.list;
-        console.log('$scope.listData after adding item: ', $scope.listData)
+      item.active = true;
+      $http.post('/api/items', item).success(function(){
+        updateListData();
       })
       this.newItem = {};
     }
@@ -41,9 +44,9 @@ angular.module('shoppingListApp')
     }
     this.tagFilter = function(input) {
       if(listController.tagsModel) {
-        return listController.tagsModel.replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
+        return listController.tagsModel.toLowerCase().replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
           return input.tags.some(function(objTag) {
-            return objTag.indexOf(tag) !== -1;
+            return objTag.toLowerCase().indexOf(tag) !== -1;
           });
         });
       } else {

@@ -14,12 +14,12 @@
         <li ng-show="isLoggedIn()" ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li>
-        <li ng-show="inList" ng-class="{active: isActive('/list/'+listId)}">
+        <li ng-show="inList && listName" ng-class="{active: isActive('/list/'+listId)}">
           <a href="/list/{{listId}}">
           {{listName}}
           </a>
         </li>
-        <li ng-show="inList" ng-class="{active: isActive('/list/'+listId+'/settings')}">
+        <li ng-show="inList && listName" ng-class="{active: isActive('/list/'+listId+'/settings')}">
           <a href="/list/{{listId}}/settings">
           List Settings
           </a>

@@ -9,6 +9,8 @@
     </ul>
     <div class="headerSection">
       <h3 class="listHeader headerInline">{{listData.name}} (<p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>)</h3>
+      <!-- DELETE BUTTON -->
+        <button class="btn btn-danger deleteList" ng-click="ListSettings.deleteList()">Delete List</button>
     </div>
     <h3 class="listHeader">Users</h3>
     <div class="col-md-12 usersChart">
