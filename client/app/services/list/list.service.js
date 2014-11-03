@@ -5,6 +5,7 @@ angular.module('shoppingListApp')
     var listData = {};
     var remainingCosts = 0;
     var dollarsSpent = 0;
+    var modifiedDate;
     return {
       setListData: function(id) {
         var self = this;
@@ -21,6 +22,11 @@ angular.module('shoppingListApp')
                 remainingCosts += listData.items[i].price
               }
             }
+            // var month = listData.modifiedAt.getMonth() + 1;
+            // var day = listData.modifiedAt.getDate();
+            // var year = listData.modifiedAt.getFullYear();
+            // modifiedDate = month + '/' + day + '/' + year;
+
           }
         });
       },
@@ -32,6 +38,9 @@ angular.module('shoppingListApp')
       },
       getDollarsSpent: function(){
         return dollarsSpent.toFixed(2);
+      },
+      getModifiedDate: function(){
+        return modifiedDate;
       }
     };
   });

@@ -131,6 +131,7 @@ exports.destroy = function(req, res) {
       for (var i = 0; i < len; i++){
         if(list.items[i].toString() === item._id.toString()){
           list.items.splice(i, 1);
+          list.modifiedAt = new Date();
           break;
         }
       }

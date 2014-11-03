@@ -18,8 +18,17 @@ exports.show = function(req, res) {
     .populate('users')
     .populate('items')
     .exec(function(err, results) {
-      console.log(results);
-      res.send(results)
+      if (err) {
+        console.log(err)
+        return res.json(500)
+      }
+      var options = {
+        path: 'items.requestedBy',
+        model: 'User'
+      };
+      List.populate(results, options, function(error, items){
+          res.send(items)
+      })
   })
 };
 

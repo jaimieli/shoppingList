@@ -10,12 +10,9 @@ angular.module('shoppingListApp')
       listData.setListData(listId).then(function(){
         $scope.listData = listData.getListData()
         console.log('$scope.listData after update: ', $scope.listData)
-        console.log('typeof $scope.listData: ', typeof $scope.listData)
-        if ($scope.listData === "" || undefined){
-          console.log('list has been deleted')
-        }
         listController.remainingCosts = listData.getRemainingCosts();
         listController.dollarsSpent = listData.getDollarsSpent();
+        // console.log('listData.getModifiedDate: ', listData.getModifiedDate())
       })
     };
     updateListData();
@@ -39,6 +36,8 @@ angular.module('shoppingListApp')
     }
     this.updateStatus = function(item){
       console.log('update purchase status of: ', item)
+      // convert requestedBy user object back to id
+      item.requestedBy = item.requestedBy._id
       $http.put('/api/items/' + item._id, item).success(function(){
         updateListData();
       })

@@ -3,7 +3,7 @@
   <div class="container" ng-show="listData">
     <div class="headerSection">
       <h3 class="listHeader headerInline">{{listData.name}} <p class="listDescription" ng-if="listData.description !== ''">({{listData.description}})</p></h3>
-
+      <p>Last modified on {{listData.modifiedAt | date:'MM/dd/yyyy @ h:mma'}}</p>
     </div>
     <h3 class="listHeader">Add an Item to Your List</h3>
     <div class="col-md-12 addItemForm">
@@ -55,9 +55,9 @@
           </div><!-- row -->
           <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:List.tagFilter | filter:List.purchasedFilter">
             <hr>
-            <div class="row">
+            <div class="row" >
               <div class="col-md-3 tableColumn">
-                <p class="tableItem">{{item.name}}</p>
+                <p class="tableItem" tooltip="requested by: {{item.requestedBy.name}}">{{item.name}}</p>
               </div>
               <div class="col-md-3 tableColumn">
                 <div class="tableColumn" ng-repeat="tag in item.tags track by $index">
