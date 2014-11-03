@@ -2,7 +2,6 @@
 
 angular.module('shoppingListApp')
   .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http) {
-    $scope.message = 'Hello';
     var listId = $stateParams.id;
     this.remainingCosts = 0;
     this.dollarsSpent = 0;
@@ -40,19 +39,36 @@ angular.module('shoppingListApp')
         updateListData();
       })
     }
-    $scope.tagFilter = function(input) {
-      console.log('tag filter')
-      console.log('$scope.tagsModel: ', $scope.tagsModel)
-        if ($scope.tagsModel) {
-          console.log('in tag filter')
-          return $scope.tagsModel.replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
-            return input.tags.some(function(objTag){
-              return objTag.indexOf(tag) !== -1;
-            });
+    this.tagFilter = function(input) {
+      if(listController.tagsModel) {
+        return listController.tagsModel.replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
+          return input.tags.some(function(objTag) {
+            return objTag.indexOf(tag) !== -1;
           });
-        }
-        else {
+        });
+      } else {
+        return true;
+      }
+    };
+    // purchased filter default
+    this.purchasedModel = {};
+    this.purchasedModel.yes = true;
+    this.purchasedModel.no = true;
+    this.purchasedFilter = function(input){
+      if(listController.purchasedModel.yes && listController.purchasedModel.no){
+        return true;
+      } else if (listController.purchasedModel.yes) {
+        if(input.purchased){
           return true;
+        } else {
+          return false;
+        };
+      } else if (listController.purchasedModel.no){
+        if(!input.purchased){
+          return true;
+        } else {
+          return false;
         }
-      };
+      }
+    }
   });

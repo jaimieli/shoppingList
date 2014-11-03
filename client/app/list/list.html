@@ -21,15 +21,15 @@
         <div class="row">
           <!-- <label>Filter by Item Name</label> -->
           <input class="filterItem col-md-3" ng-model="searchFilter.name" placeholder="Filter by Item Name"/>
-          <input class="filterTags col-md-7" name="formName" placeholder="Filter by tags separated by commas" ng-model="tagsModel"/>
+          <input class="filterTags col-md-7" name="formName" placeholder="Filter by tags separated by commas" ng-model="List.tagsModel"/>
           <div class="filterByPurchased col-md-2">
-            Filter by Purchased:
-            Yes<input type="checkbox" ng-model="searchFilter.purchased" ng-true-value="true" ng-false-value="false"/>
-            No  <input type="checkbox" ng-model="searchFilter.purchased" ng-true-value="false" ng-false-value="true"/>
+            Purchased?   <input type="checkbox" ng-model="List.purchasedModel.yes" checked/>
+            Not Purchased?   <input type="checkbox" ng-model="List.purchasedModel.no" checked/>
           </div>
         </div>
       </div>
       <div class="shoppingList">
+        <hr>
         <div class="row">
           <div class="col-md-3 tableHeader">
             Item Name
@@ -47,7 +47,8 @@
             Delete
           </div>
         </div><!-- row -->
-        <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:tagFilter ">
+        <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:List.tagFilter | filter:List.purchasedFilter">
+          <hr>
           <div class="row">
             <div class="col-md-3 tableColumn">
               <p class="tableItem">{{item.name}}</p>
@@ -61,7 +62,7 @@
               <p class="tableItem">${{item.price}}</p>
             </div>
             <div class="col-md-2 tableColumn">
-              <p class="tableItem"><input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
+              <p class="tableItem">Yes <input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
             </div>
             <div class="col-md-2 tableColumn">
               <button class="btn deleteButton" ng-click="List.deleteItem(item)">Delete
@@ -69,6 +70,7 @@
             </div>
           </div> <!-- row -->
         </div class=> <!-- item ng-repeat -->
+        <hr>
         <div class="total">
           <p class="totalItem">Money Spent: ${{List.dollarsSpent}} </p>
           <p class="totalItem">Remaining Costs: ${{List.remainingCosts}}</p>
