@@ -63,9 +63,25 @@ exports.update = function(req, res) {
 
 // Deletes a list from the DB.
 exports.destroy = function(req, res) {
+  // should also set all the items with this listId to active: false
   List.findById(req.params.id, function (err, list) {
     if(err) { return handleError(res, err); }
     if(!list) { return res.send(404); }
+    // remove list from user's lists array
+    var user = req.user;
+    var len = user.lists.length;
+    for (var i = 0; i < len; i++){
+      if(user.lists[i].toString() === list._id.toString()){
+        user.lists.splice(i, 1);
+        break;
+      }
+    }
+    user.save(function(err, user){
+      if (err){
+        console.log(err);
+        return handleError(res, err)
+      }
+    })
     list.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);

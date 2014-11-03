@@ -6,13 +6,14 @@ angular.module('shoppingListApp')
     this.remainingCosts = 0;
     this.dollarsSpent = 0;
     var listController = this;
-    if ($scope.listData === undefined){
-      console.log('list has been deleted')
-    }
     var updateListData = function(){
       listData.setListData(listId).then(function(){
         $scope.listData = listData.getListData()
         console.log('$scope.listData after update: ', $scope.listData)
+        console.log('typeof $scope.listData: ', typeof $scope.listData)
+        if ($scope.listData === "" || undefined){
+          console.log('list has been deleted')
+        }
         listController.remainingCosts = listData.getRemainingCosts();
         listController.dollarsSpent = listData.getDollarsSpent();
       })

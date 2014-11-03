@@ -1,9 +1,8 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
 <div class="col-md-12">
   <div class="container" ng-show="listData">
     <div class="headerSection">
-      <h3 class="listHeader headerInline">{{listData.name}} (<p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>)</h3>
+      <h3 class="listHeader headerInline">{{listData.name}} <p class="listDescription" ng-if="listData.description !== ''">({{listData.description}})</p></h3>
 
     </div>
     <h3 class="listHeader">Add an Item to Your List</h3>
@@ -16,78 +15,78 @@
         </div>
       </form>
     </div>
-    <h3 class="listHeader">Shopping List</h3>
-    <div class="shoppingList col-md-12 filtersHeader">
-      <div class="row">
-        <div class="col-md-3 tableHeader">
-          Filters
-        </div>
-      </div>
-    </div>
-    <div ng-show="listData.items.length" class="col-md-12 shoppingList">
-      <div class="searchDiv">
-        <div class="row">
-          <!-- <label>Filter by Item Name</label> -->
-          <input class="filterItem col-md-3" ng-model="searchFilter.name" placeholder="Filter by Item Name"/>
-          <input class="filterTags col-md-7" name="formName" placeholder="Filter by tags separated by commas" ng-model="List.tagsModel"/>
-          <div class="filterByPurchased col-md-2">
-            Purchased?   <input type="checkbox" ng-model="List.purchasedModel.yes" checked/>
-            Not Purchased?   <input type="checkbox" ng-model="List.purchasedModel.no" checked/>
+    <div>
+    <h3 ng-show="listData.items.length" class="listHeader">Shopping List</h3>
+    <div ng-show="listData.items.length" class="col-md-12">
+        <div class="shoppingList col-md-12 filtersHeader">
+          <div class="row">
+              Filters
           </div>
         </div>
-      </div>
-      <div class="shoppingList">
-        <hr>
-        <div class="row">
-          <div class="col-md-3 tableHeader">
-            Item Name
+        <div class="searchDiv">
+          <div class="row">
+            <!-- <label>Filter by Item Name</label> -->
+            <input class="filterItem col-md-3" ng-model="searchFilter.name" placeholder="Filter by Item Name"/>
+            <input class="filterTags col-md-7" name="formName" placeholder="Filter by tags separated by commas" ng-model="List.tagsModel"/>
+            <div class="filterByPurchased col-md-2">
+              Purchased?   <input type="checkbox" ng-model="List.purchasedModel.yes" checked/>
+              Not Purchased?   <input type="checkbox" ng-model="List.purchasedModel.no" checked/>
+            </div>
           </div>
-          <div class="col-md-3 tableHeader">
-            Tags
-          </div>
-          <div class="col-md-2 tableHeader">
-            Price
-          </div>
-          <div class="col-md-2 tableHeader">
-            Purchased?
-          </div>
-          <div class="col-md-2 tableHeader">
-            Delete
-          </div>
-        </div><!-- row -->
-        <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:List.tagFilter | filter:List.purchasedFilter">
+        </div>
+        <div class="shoppingList">
           <hr>
           <div class="row">
-            <div class="col-md-3 tableColumn">
-              <p class="tableItem">{{item.name}}</p>
+            <div class="col-md-3 tableHeader">
+              Item Name
             </div>
-            <div class="col-md-3 tableColumn">
-              <div class="tableColumn" ng-repeat="tag in item.tags track by $index">
-                <p class="tableItem">{{tag}}</p>
+            <div class="col-md-3 tableHeader">
+              Tags
+            </div>
+            <div class="col-md-2 tableHeader">
+              Price
+            </div>
+            <div class="col-md-2 tableHeader">
+              Purchased?
+            </div>
+            <div class="col-md-2 tableHeader">
+              Delete
+            </div>
+          </div><!-- row -->
+          <div ng-repeat="item in listData.items | orderBy: 'purchased' | filter:searchFilter | filter:List.tagFilter | filter:List.purchasedFilter">
+            <hr>
+            <div class="row">
+              <div class="col-md-3 tableColumn">
+                <p class="tableItem">{{item.name}}</p>
               </div>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <p class="tableItem">${{item.price}}</p>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <p class="tableItem">Yes <input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
-            </div>
-            <div class="col-md-2 tableColumn">
-              <button class="btn deleteButton" ng-click="List.deleteItem(item)">Delete
-              </button>
-            </div>
-          </div> <!-- row -->
-        </div class=> <!-- item ng-repeat -->
-        <hr>
-        <div class="total">
-          <p class="totalItem">Money Spent: ${{List.dollarsSpent}} </p>
-          <p class="totalItem">Remaining Costs: ${{List.remainingCosts}}</p>
-          <p class="totalItem">Total Cost: ${{listData.total}}</p>
-        </div><!-- total -->
-      </div><!-- shoppinglist w/o search -->
-    </div><!-- shoppinglist w/ search -->
+              <div class="col-md-3 tableColumn">
+                <div class="tableColumn" ng-repeat="tag in item.tags track by $index">
+                  <p class="tableItem">{{tag}}</p>
+                </div>
+              </div>
+              <div class="col-md-2 tableColumn">
+                <p class="tableItem">${{item.price}}</p>
+              </div>
+              <div class="col-md-2 tableColumn">
+                <p class="tableItem">Yes <input type="checkbox" ng-model="item.purchased" ng-click="List.updateStatus(item)" </p>
+              </div>
+              <div class="col-md-2 tableColumn">
+                <button class="btn deleteButton" ng-click="List.deleteItem(item)">Delete
+                </button>
+              </div>
+            </div> <!-- row -->
+          </div> <!-- item ng-repeat -->
+          <hr>
+          <div class="total">
+            <p class="totalItem">Money Spent: ${{List.dollarsSpent}} </p>
+            <p class="totalItem">Remaining Costs: ${{List.remainingCosts}}</p>
+            <p class="totalItem">Total Cost: ${{listData.total}}</p>
+          </div><!-- total -->
+        </div><!-- shoppinglist -->
+      </div>
+    </div>
   </div><!-- container -->
-  <div class="container" ng-if="!listData">
+  <div class="container" ng-show=" !listData">
     <div class="headerSection">
       <h3 class="listHeader headerInline">I'm sorry - this list has been deleted.</h3>
     </div>

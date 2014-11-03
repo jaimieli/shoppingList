@@ -13,6 +13,6 @@ angular.module('shoppingListApp')
         url: '/list/:id/settings',
         templateUrl: 'app/list/listSettings.html',
         controller: 'listSettingsCtrl',
-        controllerAs: 'listSettings'
+        controllerAs: 'ListSettings'
       });
 });
