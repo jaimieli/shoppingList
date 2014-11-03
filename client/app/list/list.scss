@@ -82,6 +82,7 @@
     padding-left:0px;
   }
 }
+
 .deleteButton {
   background-color: #D2403D !important;
   color: #fff !important;
@@ -89,4 +90,10 @@
   line-height: 10px;
   font-family: Lato;
   font-weight: 300;
+}
+
+.total {
+  text-align: left;
+  font-family: Lato;
+  font-size: 20px
 }

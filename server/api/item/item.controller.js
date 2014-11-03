@@ -106,6 +106,29 @@ exports.destroy = function(req, res) {
   Item.findById(req.params.id, function (err, item) {
     if(err) { return handleError(res, err); }
     if(!item) { return res.send(404); }
+    List.findById({_id: item.listId}, function(err, list){
+      if (err) {
+        console.log(err);
+        return handleError(res, err)
+      }
+      // remove item from list's item array
+      var len = list.items.length;
+      for (var i = 0; i < len; i++){
+        if(list.items[i].toString() === item._id.toString()){
+          console.log('found item')
+          list.items.splice(i, 1);
+        }
+      }
+      // update list total
+      list.total = list.total - item.price;
+      console.log('new tota: ', list.total)
+      list.save(function(err, list){
+        if (err) {
+          console.log(err);
+          return handleError(res, err)
+        }
+      })
+    })
     item.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);

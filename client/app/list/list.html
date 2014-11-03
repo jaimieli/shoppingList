@@ -4,7 +4,7 @@
   <div class="container">
     <h3 class="listHeader">{{listData.name}}</h3>
     <p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>
-    <h3 class="listHeader">Add Items to Your List</h3>
+    <h3 class="listHeader">Add an Item to Your List</h3>
     <div class="col-md-12 addItemForm">
       <form name="itemForm" ng-submit="List.addItem(List.newItem)">
         <div class="row">
@@ -37,15 +37,15 @@
           Delete
         </div>
       </div>
-      <div ng-repeat="item in listData.items track by $index | orderBy: 'purchased' ">
+      <div ng-repeat="item in listData.items | orderBy:'purchased' ">
         <div class="row">
           <div class="col-md-3 tableColumn">
             <p class="tableItem">{{item.name}}</p>
           </div>
           <div class="col-md-3 tableColumn">
-            <ul class="tableColumn" ng-repeat="tag in item.tags track by $index">
-              <li class="tableItem">{{tag}}</li>
-            </ul>
+            <div class="tableColumn" ng-repeat="tag in item.tags track by $index">
+              <p class="tableItem">{{tag}}</p>
+            </div>
           </div>
           <div class="col-md-2 tableColumn">
             <p class="tableItem">${{item.price}}</p>
@@ -58,8 +58,9 @@
             </button>
           </div>
         </div> <!-- row -->
-      </div> <!-- item ng-repeat -->
-      Total: ${{listData.total}}
+      </div class=> <!-- item ng-repeat -->
+      <div class="total">Total Cost: ${{listData.total}}
+      </div>
     </div>
   </div>
 </div>
