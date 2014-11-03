@@ -7,5 +7,15 @@
       <li>Add/Delete users from the list</li>
       <li>Archive List</li>
     </ul>
+    <h3 class="listHeader">{{listData.name}}</h3>
+    <p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>
+    <h3 class="listHeader">Users</h3>
+    <div class="col-md-12 usersChart">
+      <div class="row" ng-repeat="user in listData.users">
+        <div class="col-md-2 thumbnailUser">
+          {{user.name}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

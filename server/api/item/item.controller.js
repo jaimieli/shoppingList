@@ -62,6 +62,7 @@ exports.create = function(req, res) {
           console.log(err);
           return handleError(res, err)
         }
+        list.modifiedAt = new Date();
         list.items.addToSet(item._id.toString());
         list.total = (list.total + item.price).toFixed(2);
         list.save(function(err, list){
@@ -93,6 +94,20 @@ exports.update = function(req, res) {
   Item.findById(req.params.id, function (err, item) {
     if (err) { return handleError(res, err); }
     if(!item) { return res.send(404); }
+    List.findById({_id: item.listId}, function(err, list){
+      if (err) {
+        console.log(err);
+        return handleError(res, err)
+      }
+      // update list modified date
+      list.modifiedAt = new Date();
+      list.save(function(err, list){
+        if (err) {
+          console.log(err);
+          return handleError(res, err)
+        }
+      })
+    })
     var updated = _.merge(item, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
@@ -121,6 +136,7 @@ exports.destroy = function(req, res) {
       }
       // update list total
       list.total = (list.total - item.price).toFixed(2);
+      list.modifiedAt = new Date();
       list.save(function(err, list){
         if (err) {
           console.log(err);

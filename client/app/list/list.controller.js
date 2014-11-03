@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shoppingListApp')
-  .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http) {
+  .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http, $rootScope) {
     var listId = $stateParams.id;
     this.remainingCosts = 0;
     this.dollarsSpent = 0;
@@ -12,8 +12,12 @@ angular.module('shoppingListApp')
         console.log('$scope.listData after update: ', $scope.listData)
         listController.remainingCosts = listData.getRemainingCosts();
         listController.dollarsSpent = listData.getDollarsSpent();
+        $rootScope.$emit('new listData', listData)
       })
     };
+    $rootScope.$on('update listData', function(){
+      updateListData();
+    })
     updateListData();
     this.newItem = {};
     this.addItem = function(item){

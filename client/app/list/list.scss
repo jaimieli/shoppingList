@@ -1,7 +1,7 @@
 .listHeader {
   font-family: Lato;
   font-weight: 300;
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 5px;
 }
@@ -11,7 +11,7 @@
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 14px;
-  text-align: left;
+  text-align: center;
 }
 
 .itemName{
@@ -99,7 +99,7 @@ label {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.searchHeader {
+.filtersHeader {
   text-align: left;
   font-family: Lato;
   font-size: 20px;
@@ -108,6 +108,7 @@ label {
   text-align: left;
   font-family: Lato;
   font-size: 20px;
+
 }
 
 .tableItem {
@@ -142,4 +143,16 @@ label {
 
 .totalItem{
   display: block;
+}
+
+// Settings
+.thumbnailUser {
+  width: 124px;
+  height: 124px;
+  border: solid #B8B8B8;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 124px;
 }
