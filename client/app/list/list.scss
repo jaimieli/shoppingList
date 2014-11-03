@@ -1,9 +1,17 @@
 .listHeader {
   font-family: Lato;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+
+.headerInline {
+  display: block;
+}
+
+.headerSection {
+  margin-bottom: 30px;
 }
 
 .listDescription {
@@ -11,7 +19,7 @@
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 14px;
-  text-align: center;
+  display: inline
 }
 
 .itemName{
@@ -94,6 +102,7 @@ label {
   text-align: left;
   padding-top: 20px;
   padding-bottom: 25px;
+  margin-bottom: 15px;
 }
 .shoppingList{
   padding-top: 15px;

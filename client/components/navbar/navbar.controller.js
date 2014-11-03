@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('shoppingListApp')
-  .controller('NavbarCtrl', function ($scope, $http, $location, Auth, $stateParams, listData) {
+  .controller('NavbarCtrl', function ($scope, $http, $location, Auth, $stateParams, listData, $rootScope) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    },{
       'title': 'My Lists',
       'link': '/dashboard'
     }];
@@ -25,7 +22,17 @@ angular.module('shoppingListApp')
     $scope.listId = $stateParams.id;
 
     // get list data on load
-    $scope.listName = listData.getListData().name;
+    var updateListData = (function(){
+      listData.setListData($scope.listId).then(function(){
+        $scope.listName = listData.getListData().name
+      })
+    })();
+
+    $rootScope.$on('new listData', function(event, data){
+      console.log('catching new listData in navbar')
+      $scope.listName = data.name;
+    })
+    // $scope.listName = listData.getListData().name;
 
     $scope.logout = function() {
       Auth.logout();

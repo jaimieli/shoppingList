@@ -2,15 +2,16 @@
 
 <div class="col-md-12">
   <div class="container">
-    <h3 class="listHeader">{{listData.name}}</h3>
-    <p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>
+    <div class="headerSection">
+      <h3 class="listHeader headerInline">{{listData.name}} (<p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>)</h3>
+
+    </div>
     <h3 class="listHeader">Add an Item to Your List</h3>
     <div class="col-md-12 addItemForm">
       <form name="itemForm" ng-submit="List.addItem(List.newItem)">
         <div class="row">
           <input class="itemName col-md-3" ng-model="List.newItem.name" placeholder="Item Name" name="itemName" required/>
           <input class="itemTags col-md-7" name="formName" placeholder="Tags separated by commas" ng-model="List.newItem.tags"/>
-<!--           <input class="itemInput col-md-3" ng-model="List.newItem.notes" placeholder="Notes" name="itemNotes"/> -->
           <input class="createNewItem" type="submit" value="Add Item">
         </div>
       </form>

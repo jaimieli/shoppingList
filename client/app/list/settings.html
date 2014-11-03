@@ -7,8 +7,9 @@
       <li>Add/Delete users from the list</li>
       <li>Archive List</li>
     </ul>
-    <h3 class="listHeader">{{listData.name}}</h3>
-    <p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>
+    <div class="headerSection">
+      <h3 class="listHeader headerInline">{{listData.name}} (<p class="listDescription" ng-if="listData.description !== ''">{{listData.description}}</p>)</h3>
+    </div>
     <h3 class="listHeader">Users</h3>
     <div class="col-md-12 usersChart">
       <div class="row" ng-repeat="user in listData.users">

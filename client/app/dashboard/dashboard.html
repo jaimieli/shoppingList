@@ -1,9 +1,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-  <div class="col-md-12">
+  <div class="col-md-12 dashboardShoppingList">
     <div class="row">
-      <h3 class="listHeader" ng-if="currentUser.lists.length">Your Shopping Lists</h3>
+      <h3 class="dashboardListHeader" ng-if="currentUser.lists.length">Your Shopping Lists</h3>
       <div class="listNames">
         <ul class="col-md-4 col-lg-4 col-sm-6"ng-repeat="list in currentUser.lists">
           <li class="itemLi" tooltip="{{list.description}}"><a ng-href='/list/{{list._id}}' class="listItem">{{list.name}}</a></li>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="createListForm">
-    <h3 class="listHeader">Add a List</h3>
+    <h3 class="dashboardListHeader">Add a List</h3>
     <form name="listForm" ng-submit="" novalidate>
       <input class="listNameInput col-md-4" placeholder="List Name" ng-model="Dashboard.newList.name" required>
       <input class="listDescriptionInput col-md-4" placeholder="Description" ng-model="Dashboard.newList.description">
