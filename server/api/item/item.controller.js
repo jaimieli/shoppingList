@@ -30,15 +30,15 @@ exports.create = function(req, res) {
 
   var getPriceData = function(done){
     var options = {
-     uri: 'http://item­-price.herokuapp.com/get_price',
-     qs: {
-       item: item.name
-     },
-     method: 'GET',
-     headers: {
-       "Host":"item-price.herokuapp.com",
-     },
-     json: true
+      uri: 'http://item­-price.herokuapp.com/get_price',
+      qs: {
+         item: item.name
+      },
+      method: 'GET',
+      headers: {
+         'Host':'item-price.herokuapp.com',
+      },
+      json: true
     };
     request(options, function(err, response, body){
       if (err) {
