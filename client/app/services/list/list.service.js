@@ -36,7 +36,6 @@ angular.module('shoppingListApp')
         return dollarsSpent.toFixed(2);
       },
       addUser: function(obj){
-        var self = this;
         return $http.post('/api/lists/addUser', obj)
           .success(function(data){
             $rootScope.$emit('user added')

@@ -14,7 +14,6 @@ angular.module('shoppingListApp')
     this.deleteList = function(){
       console.log('trying to delete: ', listId)
       $http.delete('api/lists/' + listId).success(function(data){
-        console.log('successfully deleted list')
         $location.path('/dashboard')
       })
     }
@@ -24,7 +23,6 @@ angular.module('shoppingListApp')
       sent: false
     }
     this.addUser = function(invite){
-      console.log('trying to add user: ', invite)
       var postObj = {
         email: invite.email,
         listId: listId
@@ -32,14 +30,12 @@ angular.module('shoppingListApp')
       listData.addUser(postObj)
       $rootScope.$on('user not found', function(){
         listSettingsController.userAdded = false;
-         console.log('userAdded: ', listSettingsController.userAdded)
          invite.message = "Not found. Please try another email.";
          invite.sent = false;
          updateListData();
       })
       $rootScope.$on('user added', function(){
         listSettingsController.userAdded = true;
-        console.log('userAdded: ', listSettingsController.userAdded)
         invite.message = "Successfully added.";
         invite.sent = true;
         updateListData();
