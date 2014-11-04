@@ -6,11 +6,32 @@
         <h3 class="listHeader headerInline">{{listData.name}} Settings</h3>
         <button class="btn btn-danger deleteList" ng-click="ListSettings.deleteList()">Delete List</button>
     </div>
-    <h3 class="listHeader">Users</h3>
-    <div class="col-md-12 usersChart">
-      <div class="row" ng-repeat="user in listData.users">
-        <div class="col-md-2 thumbnailUser">
-          {{user.name}}
+    <!-- ADD MEMBER TO LIST BUTTON AND FORM -->
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <h3 class="listHeader headerInline">List Members</h3>
+        </div>
+        <div class="col-md-12 usersChart">
+          <div class="row">
+            <div ng-repeat="user in listData.users">
+              <div class="col-md-3 thumbnailUser">
+                {{user.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <h3 class="listHeader headerInline">Add Members
+            <p class="listDescription">(Please have them sign up first.)</p>
+          </h3>
+        </div>
+        <div>
+          <input class="addUserInput" ng-model="ListSettings.invite.email" placeholder="User Email Address" required></input>
+          <button class="addUserButton" ng-click="ListSettings.addUser(ListSettings.invite)">Submit</button>
+          <p>{{ListSettings.invite.message}}</p>
         </div>
       </div>
     </div>

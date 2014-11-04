@@ -12,6 +12,7 @@
 
 .headerSection {
   margin-bottom: 30px;
+  font-family: Lato;
 }
 
 .listDescription {
@@ -156,8 +157,8 @@ label {
 
 // List Settings
 .thumbnailUser {
-  width: 124px;
-  height: 124px;
+  width: 120px;
+  height: 120px;
   border: solid #B8B8B8;
   display: block;
   margin-left: auto;
@@ -175,4 +176,37 @@ label {
   border-radius: 3px;
   font-size: 16px;
   margin: 10px 0px 20px 10px;
+}
+
+// Add Member
+.addMemberButton {
+  border: 1px solid #3881C2;
+  background-color: #fff;
+  color: #3881C2;
+  font-family: Lato;
+  font-weight: 300;
+  margin: 10px 0px 20px 10px;
+}
+
+.addUserInput{
+  border: 1px solid #b8b8b8;
+  width: 54%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #545454 !important;
+  font-family: Lato !important;
+  font-size: 16px;
+  margin: 5px 3px;
+}
+
+.addUserButton {
+  border: 1px solid #b8b8b8;
+  width: 15%;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #3881C2;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0px 3px;
 }

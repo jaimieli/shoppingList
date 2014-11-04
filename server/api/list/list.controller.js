@@ -3,6 +3,74 @@
 var _ = require('lodash');
 var List = require('./list.model');
 var Item = require('../item/item.model')
+var User = require('../user/user.model')
+var async = require('async')
+
+// Add User to List
+exports.addUser = function(req, res){
+  console.log('req.body: ', req.body)
+  var resultsObj = {};
+  var userId;
+
+  // find User and add List
+  var addList = function(done){
+    User.where({email: req.body.email}).findOne(function(err, user){
+      if(err) {
+        console.log(err);
+        return handleError(res, err);
+      }
+      if(!user) { return res.send(404, 'cannot find user with the provided e-mail address');}
+      if (user.lists){
+        user.lists.addToSet(req.body.listId);
+      } else {
+        var arr = [];
+        arr.push(req.body.listId);
+        user.lists = arr;
+      }
+      console.log('user after adding list: ', user);
+      userId = user._id.toString();
+      user.save(function(err, user){
+        if (err){
+          console.log(err)
+          return handleError(res, err);
+        }
+        resultsObj.user = user;
+        console.log('user after save: ', user)
+        done(null, 'done adding list to user document')
+      });
+    })
+  }
+
+  // find List and add User
+  var addUser = function(done){
+    List.findById(req.body.listId, function(err, list){
+      console.log('in add user function')
+      if(err) {
+        console.log(err);
+        return handleError(res, err);
+      }
+      if(!list) { return res.send(404, 'cannot find list with the provided listId'); }
+      list.users.addToSet(userId);
+      list.save(function(err, list){
+        if (err){
+          console.log(err)
+          return handleError(res, err);
+        }
+        resultsObj.list = list;
+        done(null, 'done adding user to list')
+      });
+    })
+  }
+
+  // done with async series
+  var doneTasks = function(err, results){
+    return res.json(200, resultsObj);
+  }
+
+  async.series([addList, addUser], doneTasks)
+
+}
+
 
 // Get list of lists
 exports.index = function(req, res) {

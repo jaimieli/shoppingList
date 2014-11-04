@@ -3,7 +3,7 @@
 <div class="container">
   <div class="col-md-12 dashboardShoppingList">
     <div class="row">
-      <h3 class="dashboardListHeader" ng-if="currentUser.lists.length">Click on a Shopping List</h3>
+      <h3 class="dashboardListHeader" ng-if="currentUser.lists.length">Click to View List</h3>
       <div class="listNames">
         <ul class="col-md-4 col-lg-4 col-sm-6"ng-repeat="list in currentUser.lists">
           <li class="itemLi" tooltip="{{list.description}}"><a ng-href='/list/{{list._id}}' class="listItem">{{list.name}}</a></li>
