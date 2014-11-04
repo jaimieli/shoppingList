@@ -35,13 +35,14 @@ angular.module('shoppingListApp')
          console.log('userAdded: ', listSettingsController.userAdded)
          invite.message = "Not found. Please try another email.";
          invite.sent = false;
+         updateListData();
       })
       $rootScope.$on('user added', function(){
         listSettingsController.userAdded = true;
         console.log('userAdded: ', listSettingsController.userAdded)
-        var email = invite.email.toString();
         invite.message = "Successfully added.";
         invite.sent = true;
+        updateListData();
       })
     }
   });

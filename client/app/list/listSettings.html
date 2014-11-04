@@ -1,28 +1,26 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
+<br>
 <div class="col-md-12">
   <div class="container" ng-show="listData">
-    <div class="headerSection">
-        <h3 class="listHeader headerInline">{{listData.name}} Settings</h3>
+    <div class="headerSection col-md-3">
+        <h3 class="listHeader headerInline">{{listData.name}}</h3>
         <button class="btn btn-danger deleteList" ng-click="ListSettings.deleteList()">Delete List</button>
     </div>
     <!-- ADD MEMBER TO LIST BUTTON AND FORM -->
-    <div class="row">
-      <div class="col-md-6">
+    <div class="col-md-3">
+      <div class="row">
         <div>
           <h3 class="listHeader headerInline">List Members</h3>
         </div>
-        <div class="col-md-12 usersChart">
-          <div class="row">
-            <div ng-repeat="user in listData.users">
-              <div class="col-md-3 thumbnailUser">
-                {{user.name}}
-              </div>
-            </div>
-          </div>
+        <div class="col-md-12 holdingMembers">
+          <ul class="listOfAllMembers" ng-repeat="user in listData.users">
+              <li class="memberName">{{user.name}}</li>
+          </ul>
         </div>
       </div>
-      <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+      <div class="row">
         <div>
           <h3 class="listHeader headerInline">Add Members
             <p class="listDescription">(Please have them sign up first.)</p>
