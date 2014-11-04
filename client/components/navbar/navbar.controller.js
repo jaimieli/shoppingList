@@ -22,11 +22,15 @@ angular.module('shoppingListApp')
     $scope.listId = $stateParams.id;
 
     // get list data on load
-    var updateListData = (function(){
+    var updateListData = function(){
       listData.setListData($scope.listId).then(function(){
         $scope.listName = listData.getListData().name
       })
-    })();
+    };
+
+    if ($scope.inList) {
+      updateListData();
+    }
 
     $rootScope.$on('new listData', function(event, data){
       console.log('catching new listData in navbar')
