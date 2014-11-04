@@ -2,10 +2,14 @@
 
 angular.module('shoppingListApp')
   .controller('ListCtrl', function ($scope, listData, $stateParams, Auth, $http, $rootScope) {
+    var listController = this;
     var listId = $stateParams.id;
     this.remainingCosts = 0;
     this.dollarsSpent = 0;
-    var listController = this;
+    // purchased filter default settings
+    this.purchasedModel = {};
+    this.purchasedModel.yes = true;
+    this.purchasedModel.no = true;
     var updateListData = function(){
       listData.setListData(listId).then(function(){
         $scope.listData = listData.getListData()
@@ -34,6 +38,7 @@ angular.module('shoppingListApp')
         updateListData();
       })
     }
+    // update object after checking/unchecking purchased
     this.updateStatus = function(item){
       console.log('update purchase status of: ', item)
       // convert requestedBy user object back to id
@@ -42,6 +47,7 @@ angular.module('shoppingListApp')
         updateListData();
       })
     }
+    // tag flter function
     this.tagFilter = function(input) {
       if(listController.tagsModel) {
         return listController.tagsModel.toLowerCase().replace(/\s*,\s*/g, ',').split(',').every(function(tag) {
@@ -53,10 +59,7 @@ angular.module('shoppingListApp')
         return true;
       }
     };
-    // purchased filter default
-    this.purchasedModel = {};
-    this.purchasedModel.yes = true;
-    this.purchasedModel.no = true;
+    // purchased filter function
     this.purchasedFilter = function(input){
       if(listController.purchasedModel.yes && listController.purchasedModel.no){
         return true;
